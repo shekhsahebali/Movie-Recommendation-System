@@ -27,8 +27,9 @@ try:
     # similarity = joblib.load('model.pkl')
      similarity = load_similarity_model()
     
-except FileNotFoundError:
+except Exception as e:
     st.error("Error: 'model.pkl' not found.")
+    st.error(f"Error loading model: {e}")
     st.stop()
 
 
