@@ -3,7 +3,7 @@ import joblib
 import pandas as pd
 import requests
 
-API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiZTY1MDU0YWE0YTIwYWMwM2JkZTE5MTdhM2Q1YjRlNyIsIm5iZiI6MTc2NDQzMDc1NC42MTc5OTk4LCJzdWIiOiI2OTJiMTNhMmMzYWNiYjU1NGU0YzQyYzAiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.4DAQbXS9gLsAi6dWmXqq_-VgFvSjKYWjl8WOWVwzLvE"
+API_KEY = st.secrets["TMDB_API_KEY"]
 
 def get_poster(movie_title):
     url = f"https://api.themoviedb.org/3/search/movie?api_key={API_KEY}&query={movie_title}"
