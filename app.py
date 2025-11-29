@@ -53,13 +53,15 @@ if st.button("Get Recommendations", key="recommend_button"):
 
             if recommendations:
                 st.subheader(f"Recommendations for '{movie_title_input}':")
-                for i, rec_movie in enumerate(recommendations):
-                    st.write(f"{i+1}. {rec_movie}")
-                    
-                    # Fetch and display poster
-                    poster_url = get_poster(rec_movie)
-                    if poster_url:
-                        st.image(poster_url, width=100)
+                num_columns = 5 
+                for i in range(0, len(recommendations), num_columns):
+                    cols = st.columns(num_columns)
+                    for j, rec_movie in enumerate(recommendations[i:i+num_columns]):
+                        with cols[j]:
+                            st.text(rec_movie)
+                            poster_url = get_poster(rec_movie)
+                            if poster_url:
+                                st.image(poster_url, use_column_width=True)
             else:
                 st.info(f"No recommendations found for '{movie_title_input}'.")
 
