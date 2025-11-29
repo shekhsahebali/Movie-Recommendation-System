@@ -21,7 +21,8 @@ except FileNotFoundError:
 def load_similarity_model():
     model_path = hf_hub_download(
         repo_id="shekhsahebali/Movie-Recommendation-Model",
-        filename="model.pkl"
+        filename="model.pkl",
+        token=st.secrets["HF_TOKEN"]
     )
     with open(model_path, "rb") as f:
         return joblib.load(f)
