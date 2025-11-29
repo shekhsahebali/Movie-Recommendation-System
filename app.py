@@ -17,7 +17,7 @@ except FileNotFoundError:
 
 
 # ---- Load similarity model with caching ----
-@st.cache_resource
+
 def load_similarity_model():
     model_path = hf_hub_download(
         repo_id="shekhsahebali/Movie-Recommendation-Model",
