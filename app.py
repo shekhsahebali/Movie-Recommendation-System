@@ -2,6 +2,7 @@ import streamlit as st
 import joblib
 import random
 import pandas as pd
+from huggingface_hub import hf_hub_download
 
 st.set_page_config(page_title="Movie PaYo", page_icon="🎬")
 
@@ -13,7 +14,11 @@ except FileNotFoundError:
     st.stop() 
 
 try:
-    similarity = joblib.load('model.pkl')
+    # similarity = joblib.load('model.pkl')
+    similarity = hf_hub_download(
+    repo_id="ssask12/Movie-Recommendation-Model",
+    filename="model.pkl"
+)
 except FileNotFoundError:
     st.error("Error: 'model.pkl' not found.")
     st.stop()
