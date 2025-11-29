@@ -1,11 +1,7 @@
 import streamlit as st
 import joblib
 import pandas as pd
-from huggingface_hub import hf_hub_download
-from huggingface_hub import login
 
-HF_TOKEN = st.secrets["HF_TOKEN"]
-login(HF_TOKEN)
 st.set_page_config(page_title="Movie PaYo", page_icon="🎬")
 
 # ---- Load movie data ----
@@ -18,17 +14,9 @@ except FileNotFoundError:
 
 # ---- Load similarity model with caching ----
 
-def load_similarity_model():
-    model_path = hf_hub_download(
-        repo_id="shekhsahebali/Movie-Recommendation-Model",
-        filename="model.pkl",
-        token=st.secrets["HF_TOKEN"]
-    )
-    with open(model_path, "rb") as f:
-        return joblib.load(f)
 
 try:
-    similarity = load_similarity_model()
+    similarity =  joblib.load('model20.pkl')
 except Exception as e:
     st.error(f"Error loading model: {e}")
     st.stop()
