@@ -15,10 +15,15 @@ except FileNotFoundError:
 
 try:
     # similarity = joblib.load('model.pkl')
-    similarity = hf_hub_download(
-    repo_id="ssask12/Movie-Recommendation-Model",
-    filename="model.pkl"
-)
+    model_path = hf_hub_download(
+        repo_id="ssask12/Movie-Recommendation-Model",
+        filename="model.pkl"
+    )
+
+ 
+    with open(model_path, "rb") as f:
+        similarity = joblib.load(f)
+    
 except FileNotFoundError:
     st.error("Error: 'model.pkl' not found.")
     st.stop()
