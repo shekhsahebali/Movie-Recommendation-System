@@ -13,16 +13,19 @@ except FileNotFoundError:
     st.error("Error: 'movie_data.pkl' not found.")
     st.stop() 
 
-try:
-    # similarity = joblib.load('model.pkl')
+@st.cache_resource
+def load_similarity_model():
     model_path = hf_hub_download(
         repo_id="ssask12/Movie-Recommendation-Model",
         filename="model.pkl"
     )
-
- 
     with open(model_path, "rb") as f:
-        similarity = joblib.load(f)
+        return joblib.load(f)
+
+
+try:
+    # similarity = joblib.load('model.pkl')
+     similarity = load_similarity_model()
     
 except FileNotFoundError:
     st.error("Error: 'model.pkl' not found.")
