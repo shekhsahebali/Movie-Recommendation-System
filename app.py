@@ -2,7 +2,10 @@ import streamlit as st
 import joblib
 import pandas as pd
 from huggingface_hub import hf_hub_download
+from huggingface_hub import login
 
+HF_TOKEN = st.secrets["HF_TOKEN"]
+login(HF_TOKEN)
 st.set_page_config(page_title="Movie PaYo", page_icon="🎬")
 
 # ---- Load movie data ----
