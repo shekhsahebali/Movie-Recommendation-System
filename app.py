@@ -17,7 +17,7 @@ except FileNotFoundError:
 @st.cache_resource
 def load_similarity_model():
     model_path = hf_hub_download(
-        repo_id="ssask12/Movie-Recommendation-Model",
+        repo_id="shekhsahebali/Movie-Recommendation-Model",
         filename="model.pkl"
     )
     with open(model_path, "rb") as f:
